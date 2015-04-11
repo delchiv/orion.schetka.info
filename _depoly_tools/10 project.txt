@@ -10,29 +10,29 @@ ROOT = /home/[USERNAME]/sites/[DOMAINNAME]
         ├── media
         ├── src      - тут исходники (выкладывается на github.com)
         ├── static
-        └── virtualenv
+        └── venv
 
 создаем виртуальное окружение
 
     cd [ROOT]
-    virtualenv virtualenv
+    virtualenv venv
 
 активируем 
     в Ubuntu:
 
         cd [ROOT]
-        source ./virtualenv/bin/activate
+        source ./venv/bin/activate
 
     в Windows:
 
         cd [ROOT]
-        ./virtualenv/Scripts/activate.bat
+        ./venv/Scripts/activate.bat
 
 ставим библиотеки (для Windows см. "15 windows.txt")
 
     pip install django gunicorn fabric
 
-создаем проект в src
+создаем проект
 
     cd [ROOT]
     django-admin startproject [PROJECTNAME]
@@ -43,7 +43,9 @@ ROOT = /home/[USERNAME]/sites/[DOMAINNAME]
     переименовываем settins.py.template в settins.py, настраиваем
 
     cd [ROOT]/src
-    python manage.py runserver
+    pip freeze > requirements.txt
+
+    проверяем: python manage.py runserver
 
 создаем git-репозиторий в src
 
@@ -60,6 +62,8 @@ settings.py
 
 создаем репозиторий [DOMAINNAME] на github.com
 
-git remote add origin https://github.com/delchiv/orion.schetka.info.git
+git remote add origin https://github.com/delchiv/[DOMAINNAME].git
 git add .
+git commit -am"Initial"
 git push -u origin master
+

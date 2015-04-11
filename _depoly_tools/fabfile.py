@@ -4,20 +4,20 @@ from fabric.contrib.files import append, exists, sed
 from fabric.api import env, local, run
 import random
 
-REPO_URL = 'https://github.com/delchiv/schetka.info.git'
+REPO_URL = 'git remote add origin https://github.com/delchiv/orion.schetka.info.git'
 
 def deploy():
     site_folder = '/home/%s/sites/%s' % (env.user, env.host)
-    source_folder = site_folder + '/source'
+    source_folder = site_folder + '/src'
     _create_directory_structure_if_necessary(site_folder)
-#    _get_latest_source(source_folder)
+    _get_latest_source(source_folder)
+    _update_virtualenv(source_folder)
 #    _update_settings(source_folder, env.host)
-#    _update_virtualenv(source_folder)
 #    _update_static_files(source_folder)
 #    _update_database(source_folder)
 
 def _create_directory_structure_if_necessary(site_folder):
-    for subfolder in ('db', 'static', 'media', 'virtualenv', 'src'):
+    for subfolder in ('db', 'static', 'media', 'venv', 'src'):
         run('mkdir -p %s/%s' % (site_folder, subfolder))
 
 def _get_latest_source(source_folder):
@@ -29,10 +29,10 @@ def _get_latest_source(source_folder):
     run('cd %s && git reset --hard %s' % (source_folder, current_commit))
 
 def _update_virtualenv(source_folder, user):
-    virtualenv_folder = source_folder + '/../../%s_env' % (user,)
+    virtualenv_folder = source_folder + '/../venv' % (user,)
     if not exists(virtualenv_folder + '/bin/pip'):
-        run('virtualenv %s' % (virtualenv_folder,))
-    run('%s/bin/pip install -r %s/requirements.list' % (
+        run('virtualenv --python=python2 %s' % (virtualenv_folder,))
+    run('%s/bin/pip install -r %s/requirements.txt' % (
             virtualenv_folder, source_folder
     ))
 

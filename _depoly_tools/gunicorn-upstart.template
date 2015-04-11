@@ -9,6 +9,6 @@ setuid [USERNAME]
 
 chdir /home/[USERNAME]/sites/[DOMAINNAME]/src
 
-exec ../virtualenv/bin/gunicorn \
+exec ../venv/bin/gunicorn \
     --bind unix:/tmp/[DOMAINNAME].socket \
     [PROJECTNAME].wsgi:application
