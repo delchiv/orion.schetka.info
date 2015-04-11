@@ -1,0 +1,14 @@
+description "Gunicorn server for [DOMAINNAME]"
+
+start on net-device-up
+stop on shutdown
+
+respawn
+
+setuid [USERNAME]
+
+chdir /home/[USERNAME]/sites/[DOMAINNAME]/src
+
+exec ../virtualenv/bin/gunicorn \
+    --bind unix:/tmp/[DOMAINNAME].socket \
+    [PROJECTNAME].wsgi:application

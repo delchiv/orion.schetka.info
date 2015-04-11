@@ -1,0 +1,65 @@
+﻿Структура проекта на сервере
+
+ROOT = /home/[USERNAME]/sites/[DOMAINNAME]
+
+/home/[USERNAME]
+└── sites
+    └── [DOMAINNAME] - отсюда для локальной разработки
+        ├── db
+        ├── log
+        ├── media
+        ├── src      - тут исходники (выкладывается на github.com)
+        ├── static
+        └── virtualenv
+
+создаем виртуальное окружение
+
+    cd [ROOT]
+    virtualenv virtualenv
+
+активируем 
+    в Ubuntu:
+
+        cd [ROOT]
+        source ./virtualenv/bin/activate
+
+    в Windows:
+
+        cd [ROOT]
+        ./virtualenv/Scripts/activate.bat
+
+ставим библиотеки (для Windows см. "15 windows.txt")
+
+    pip install django gunicorn fabric
+
+создаем проект в src
+
+    cd [ROOT]
+    django-admin startproject [PROJECTNAME]
+
+    переименовываем [PROJECTNAME] в src
+    файл [ROOT]/src/[PROJECTNAME]/settings.py переименовываем в base_settings.py
+    копируем settins.py.template в [ROOT]/src/[PROJECTNAME]
+    переименовываем settins.py.template в settins.py, настраиваем
+
+    cd [ROOT]/src
+    python manage.py runserver
+
+создаем git-репозиторий в src
+
+cd [ROOT]/src
+git init .
+
+создаем .gitignore
+
+    ==== cut ====
+__pycache__
+*.pyc
+settings.py
+    ==== cut ====
+
+создаем репозиторий [DOMAINNAME] на github.com
+
+git remote add origin https://github.com/delchiv/orion.schetka.info.git
+git add .
+git push -u origin master

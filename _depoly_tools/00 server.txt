@@ -1,0 +1,41 @@
+Ubuntu 14.04 LTS x64
+
+Коннектимся к серверу и создаем пользователя [USERNAME]
+
+    sudo useradd -m -s /bin/bash [USERNAME]
+    sudo usermod -a -G sudo [USERNAME]
+    sudo passwd [USERNAME]
+
+Коннектимся под пользователем [USERNAME]
+
+    sudo apt-get update
+    sudo apt-get install nginx
+
+    в браузере вводим http://[IP-сервера]
+    видим страницу "Welcome to nginx!"
+
+    sudo apt-get install mysql-server
+
+    разрешаем доступ к БД извне:
+
+    sudo nano  /etc/mysql/my.cnf
+
+    меняем 
+
+    bind-address            = 127.0.0.1
+
+    на
+
+    bind-address            = 0.0.0.0
+
+    sudo service mysql restart
+
+    sudo apt-get install git
+
+    для сборки MySQL-python
+    sudo apt-get install build-essential python-dev libmysqlclient-dev
+
+    для полноценной работы pillow
+    sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
+
+    sudo pip install virtualenv

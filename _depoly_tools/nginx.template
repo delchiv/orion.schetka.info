@@ -1,0 +1,29 @@
+
+server {
+    listen 80;
+    server_name www.[DOMAINNAME];
+
+    return 301 $scheme://[DOMAINNAME]$request_uri;
+}
+
+server {
+    listen 80;
+    server_name [DOMAINNAME];
+
+    location /static {
+        alias /home/[USERNAME]/sites/[DOMAINNAME]/static;
+    }
+
+    location /media {
+        alias /home/[USERNAME]/sites/[DOMAINNAME]/media;
+    }
+
+    location / {
+        proxy_set_header Host $host;
+        proxy_pass http://unix:/tmp/[DOMAINNAME].socket;
+# Если нужно закрыть доступ к сайту паролем на уровне сервера
+#        auth_basic "Restricted";
+#        auth_basic_user_file /etc/nginx/.htpasswd;
+    }
+}
+

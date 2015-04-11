@@ -1,0 +1,8 @@
+Если работаем на Windows (шаг 4, возможно, можно пропускать):
+ 
+1. Обновляем setup_tools: https://pypi.python.org/pypi/setuptools#installation-instructions
+2. Обновляем pip: https://pip.pypa.io/en/stable/installing.html
+3. Качаем и устанавливаем http://www.microsoft.com/en-us/download/confirmation.aspx?id=44266
+   (Нужно, чтоб скомпилился pyCrypto)
+4. SET VS90COMNTOOLS=[ %VS100COMNTOOLS% | %VS110COMNTOOLS% ] (зависит от винды, если не находится vcvarsall.bat)
+5. pip install -r requirements.txt     

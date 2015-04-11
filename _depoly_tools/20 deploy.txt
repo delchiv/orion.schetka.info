@@ -1,0 +1,37 @@
+Создаем БД и пользователя MySql
+
+    mysql -u root -p
+
+    mysql> CREATE DATABASE [DATABASE];
+    mysql> CREATE USER '[DBUSERNAME]'@'%' IDENTIFIED BY '[PASSWORD]';
+    mysql> GRANT ALL PRIVILEGES ON [DATABASE].* to '[DBUSERNAME]'@'%';
+
+    Можно восстановить backup базы через MySQL Workbench
+
+Если нужно закрыть доступ к сайту паролем на уровне сервера
+
+    sudo apt-get install apache2-utils
+    sudo htpasswd -c /etc/nginx/.htpasswd [SOMEUSERNAME]
+
+Привязыавем домен к сокету
+
+    sudo rm /etc/nginx/sites-enabled/default
+    sudo nano /etc/nginx/sites-available/[DOMAINNAME]
+
+    см. nginx.template
+
+    sudo ln -s /etc/nginx/sites-available/[DOMAINNAME] /etc/nginx/sites-enabled/
+
+    sudo service nginx restart
+
+Привязываем проект к сокету
+
+    sudo nano /etc/init/[DOMAINNAME].conf
+
+    см. gunicorn-upstart.template
+
+    sudo start [DOMAINNAME] # т.к. проект еще не развернут, получим start: Job failed to start
+
+Разворачиваем проект на хостинг
+
+    fab deploy:host=[USERNAME]@[DOMAINNAME]
