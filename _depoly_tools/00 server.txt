@@ -38,4 +38,7 @@ Ubuntu 14.04 LTS x64
     для полноценной работы pillow
     sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
 
+    для установки pycrypt
+    sudo apt-get install autoconf g++ python2.7-dev
+
     sudo pip install virtualenv

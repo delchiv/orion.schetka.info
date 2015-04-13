@@ -9,6 +9,8 @@ server {
 server {
     listen 80;
     server_name [DOMAINNAME];
+    access_log /home/[USERNAME]/sites/[DOMAINNAME]/log/nginx_access.log;
+    error_log /home/[USERNAME]/sites/[DOMAINNAME]/log/nginx_error.log;
 
     location /static {
         alias /home/[USERNAME]/sites/[DOMAINNAME]/static;
