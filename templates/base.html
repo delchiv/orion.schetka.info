@@ -1,0 +1,13 @@
+﻿{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Orion</title>
+        <link rel="stylesheet" type="text/css" href="{% static "extjs/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css" %}">
+        <script type="text/javascript" src="{% static "extjs/build/ext-all.js" %}"></script>
+        <script type="text/javascript" src="{% static "extjs/build/packages/ext-theme-neptune/build/ext-theme-neptune.js" %}"></script>
+
+        {% block frontend %}{% endblock frontend %}
+    </head>
+    <body></body>
+</html>
