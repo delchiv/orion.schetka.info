@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '355xw-yu-hdn2crd!h(4^n$!31we-402^f@s1nc9-+_^^q2#2e'
+SECRET_KEY = 'k2xq^gp2d82i88&%w4q%$xt#m*lns6q!=i9whi$h9=)n6yex-g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,7 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'frontend',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -71,7 +73,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 WSGI_APPLICATION = 'orion_project.wsgi.application'
 
@@ -108,4 +109,4 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.abspath(os.path.join(BASE_DIR, 'static')),
-)
+)        

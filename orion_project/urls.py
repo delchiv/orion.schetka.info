@@ -2,10 +2,9 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'orion_project.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-    url(r'^', include('frontend.urls')),
+    url(r'^$', 'orion_project.views.index', name='index'),
+
+    url(r'^api/auth/', include('rest_auth.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 ]
