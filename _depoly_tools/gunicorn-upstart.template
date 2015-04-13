@@ -11,4 +11,5 @@ chdir /home/[USERNAME]/sites/[DOMAINNAME]/src
 
 exec ../venv/bin/gunicorn \
     --bind unix:/tmp/[DOMAINNAME].socket \
+    --log-file /home/[USERNAME]/sites/[DOMAINNAME]/log/gunicorn.log \
     [PROJECTNAME].wsgi:application
