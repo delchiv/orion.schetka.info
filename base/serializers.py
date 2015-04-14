@@ -12,12 +12,13 @@ class MenuSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class SpTvrSerializer(serializers.ModelSerializer):
-    grp_name = serializers.CharField(source='grp', read_only=True)
+#    grp_name = serializers.CharField(source='grp', read_only=True)
 
     class Meta:
         model = SpTvr
-        fields = ('id', 'num', 'name', 'grp', 'grp_name')
-
+#        fields = ('id', 'num', 'name', 'grp', 'grp_name')
+        fields = ('id', 'num', 'name', 'grp',)
+        depth = 1
 
 class SpGrpSerializer(serializers.ModelSerializer):
     class Meta:

@@ -10,22 +10,14 @@ from .serializers import MenuSerializer, SpTvrSerializer, SpGrpSerializer
 
 # Create your views here.
 
-class ExtJSModelViewSet(viewsets.ModelViewSet):
-    def create(self, request, format=None):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({'results':serializer.data, 'success':True, 'message':''}, status=status.HTTP_201_CREATED)
-        return Response({'results':[], 'success':False, 'message':serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-
-class MenuViewSet(ExtJSModelViewSet):
+class MenuViewSet(viewsets.ModelViewSet):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
-class SpTvrViewSet(ExtJSModelViewSet):
+class SpTvrViewSet(viewsets.ModelViewSet):
     queryset = SpTvr.objects.all()
     serializer_class = SpTvrSerializer
 
-class SpGrpViewSet(ExtJSModelViewSet):
+class SpGrpViewSet(viewsets.ModelViewSet):
     queryset = SpGrp.objects.all()
     serializer_class = SpGrpSerializer
