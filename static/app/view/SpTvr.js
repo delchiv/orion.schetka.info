@@ -1,15 +1,12 @@
 
-var storeSpGrp = new Ext.data.Store({
-    autoLoad: true,
-    fields: [], 
-    proxy: {
-        type: 'ajax',
-        url: '/spgrp/',
-        reader: {
-            type: 'json',
-            rootProperty: 'results'
-        }
-    }
+Ext.define('Orion.view.SpComob', {
+    extend: 'Ext.form.field.ComboBox',
+    xtype: 'spcombo',
+    typeAhead: true,
+    triggerAction: 'all',
+    store: new Ext.data.Store({autoLoad: true, fields: [], proxy: {type: 'ajax', url: '/spgrp/',}}),
+    displayField: 'name',
+    valueField: 'id'
 });
 
 Ext.define('Orion.view.SpTvr', {
@@ -20,6 +17,7 @@ Ext.define('Orion.view.SpTvr', {
     columns: [
         {
             text: 'Код',
+            sortable: true,
             dataIndex: 'num',
             editor: {
                 xtype: 'textfield',
@@ -41,16 +39,14 @@ Ext.define('Orion.view.SpTvr', {
             sortable: true,
             flex: 2,
             dataIndex: 'grp',
-            editor: new Ext.form.field.ComboBox({
-                typeAhead: true,
-                triggerAction: 'all',
-                store: storeSpGrp,
-                displayField: 'name',
-                valueField: 'id',
-            }),
+            editor: {
+                xtype: 'spcombo',
+            },
             renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-                var data = record.data['grp_name'];
-                return  data !== null ? data : '';
+                console.log(value);
+//                var data = record.data['grp_name'];
+//                return  data !== null ? data : '';
+                return value['name']
             }
         },
     ],

@@ -13,7 +13,8 @@ Ext.define('Orion.view.RowEditor', {
         },
         edit: function (rowEditing, context, eOpts) {
             context.store.sync();
-        }
+            context.record.commit();
+        },
     }
 })
 
