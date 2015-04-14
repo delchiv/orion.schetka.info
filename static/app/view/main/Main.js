@@ -18,6 +18,56 @@ Ext.define('Orion.view.main.MainMenu', {
     },
     collapsible: true,
     split: true,
+
+    afterRender: function (eOpts) {
+        var me = this;
+
+        var data = Ext.create('Orion.store.Base', {fields: [],});
+        data.getProxy().setUrl('/menu/');
+
+        data.load(function () {
+            var menus = [];
+            this.data.each(function (rec) {
+                if (rec.data['level'] === 0) {
+                    var menu = Ext.create('Ext.tree.Panel', {
+                        title: rec.data['name'],
+                        rootVisible: false,
+                        listeners: {
+                            itemdblclick: function (view, record, item, index, event, options) {
+                                var mainPanel = Ext.getCmp('id-mainpanel');
+                        
+                                var newTab = mainPanel.items.findBy(function (tab) {
+                                    return tab.title === record.get('text');
+                                });
+                        
+                                if (!newTab) {
+                                    newTab = mainPanel.add({
+                                        xtype: record.get('className'),
+                                        closable: true,
+                                        title: record.get('text')
+                                    });
+                                }
+                        
+                                mainPanel.setActiveTab(newTab);
+                            },
+                        }
+                    });
+                    menus.push(menu);
+                } else {
+// TODO Тут обрабатывается только первый уровень дерева (нужно дорабатывать)
+                    var root = menus.slice(-1)[0].getRootNode();
+                    root.appendChild({
+                        text: rec.data['name'],
+                        className: rec.data['link'],
+                        leaf: true
+                    });
+                }
+            });
+            me.add(menus);
+        });
+
+        me.callParent(arguments);
+    },
 });
 
 Ext.define('Orion.view.main.Panel', {
@@ -74,6 +124,7 @@ Ext.define('Orion.view.main.Main', {
         {
             region: 'center',
             xtype: 'mainpanel',
+            id: 'id-mainpanel',
         },
         {
             region: 'north',

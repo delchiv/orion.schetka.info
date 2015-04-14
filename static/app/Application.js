@@ -16,6 +16,7 @@ Ext.define('Orion.Application', {
     views: [
         'main.Main',
         'login.Login',
+        'SpTvr',
     ],
 
     init: function () {
