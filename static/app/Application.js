@@ -17,6 +17,7 @@ Ext.define('Orion.Application', {
         'main.Main',
         'login.Login',
         'SpTvr',
+        'SpGrp',
     ],
 
     init: function () {

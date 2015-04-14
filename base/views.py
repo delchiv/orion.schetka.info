@@ -5,8 +5,8 @@ from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
-from .models import Menu, SpTvr
-from .serializers import MenuSerializer, SpTvrSerializer
+from .models import Menu, SpTvr, SpGrp
+from .serializers import MenuSerializer, SpTvrSerializer, SpGrpSerializer
 
 # Create your views here.
 
@@ -25,3 +25,7 @@ class MenuViewSet(ExtJSModelViewSet):
 class SpTvrViewSet(ExtJSModelViewSet):
     queryset = SpTvr.objects.all()
     serializer_class = SpTvrSerializer
+
+class SpGrpViewSet(ExtJSModelViewSet):
+    queryset = SpGrp.objects.all()
+    serializer_class = SpGrpSerializer

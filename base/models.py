@@ -22,10 +22,23 @@ class Menu(MPTTModel):
     def __unicode__(self):
         return self.name
 
+
+class SpGrp(models.Model):
+    num  = models.IntegerField()
+    name = models.CharField(max_length=150)
+
+    class Meta:
+       verbose_name = "Группа"
+       verbose_name_plural = "Справочник групп"
+
+    def __unicode__(self):
+        return self.name
+
+
 class SpTvr(models.Model):
     num  = models.IntegerField()
     name = models.CharField(max_length=150)
-#    ctg  = models.ForeignKey(Ctg, blank=True, null=True)
+    grp  = models.ForeignKey(SpGrp, blank=True, null=True)
 
     class Meta:
        verbose_name = "Товар"
