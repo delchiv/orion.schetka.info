@@ -8,7 +8,6 @@ from .models import Menu, SpTvr, SpGrp
 class MenuSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Menu
-        fields = ('num', 'name', 'link', 'level')
 
 
 class SpTvrSerializer(serializers.ModelSerializer):

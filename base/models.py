@@ -36,10 +36,13 @@ class SpGrp(models.Model):
 
 
 class SpTvr(models.Model):
-    num  = models.IntegerField()
-    name = models.CharField(max_length=150)
-    grp  = models.ForeignKey(SpGrp, related_name='+', blank=True, null=True)
+    num    = models.IntegerField()
+    name   = models.CharField(max_length=150)
+    izm    = models.CharField(max_length=20, blank=True, null=True)
+    grp    = models.ForeignKey(SpGrp, related_name='+', blank=True, null=True)
     subgrp = models.ForeignKey(SpGrp, related_name='+', blank=True, null=True)
+
+    typ    = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
        verbose_name = "Товар"
@@ -47,3 +50,22 @@ class SpTvr(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class TypedSpTvrManager(models.Manager):        
+    def __init__(self, default_typ, *args, **kwargs):
+        self.default_typ = default_typ
+        super(TypedSpTvrManager, self).__init__(*args, **kwargs)
+
+    def get_queryset(self):
+        return super(TypedSpTvrManager, self).get_queryset().filter(typ=self.default_typ)
+
+class TypedSpTvr(SpTvr):
+    default_typ = ''
+    objects = TypedSpTvrManager(default_typ)
+
+    class Meta:
+        proxy = True
+
+    def save(self, *args, **kwargs):
+        self.typ = self.default_typ
+        super(TypedSpTvr, self).save(*args, **kwargs)

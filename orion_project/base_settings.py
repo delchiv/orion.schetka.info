@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'mptt',
 
     'base',
+    'recept',
 )
 
 MIDDLEWARE_CLASSES = (

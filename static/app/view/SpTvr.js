@@ -56,3 +56,17 @@ Ext.define('Orion.view.SpTvr', {
         },
     ],
 });
+
+
+Ext.define('Orion.view.Products', {
+    extend: 'Orion.view.SpTvr',
+    xtype: 'products',
+    alias: 'widget.products',
+});
+
+Ext.define('Orion.view.Components', {
+    extend: 'Orion.view.SpTvr',
+    xtype: 'components',
+    alias: 'widget.components',
+});
+
