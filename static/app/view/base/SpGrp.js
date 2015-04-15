@@ -1,5 +1,5 @@
 
-Ext.define('Orion.view.SpGrp', {
+Ext.define('Orion.view.base.SpGrp', {
     extend: 'Orion.view.base.PlainGridPanel',
     xtype: 'spgrp',
     alias: 'widget.spgrp',

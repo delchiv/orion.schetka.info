@@ -1,5 +1,5 @@
 
-Ext.define('Orion.view.SpTvr', {
+Ext.define('Orion.view.base.SpTvr', {
     extend: 'Orion.view.base.PlainGridPanel',
     xtype: 'sptvr',
     alias: 'widget.sptvr',
@@ -56,17 +56,3 @@ Ext.define('Orion.view.SpTvr', {
         },
     ],
 });
-
-
-Ext.define('Orion.view.Products', {
-    extend: 'Orion.view.SpTvr',
-    xtype: 'products',
-    alias: 'widget.products',
-});
-
-Ext.define('Orion.view.Components', {
-    extend: 'Orion.view.SpTvr',
-    xtype: 'components',
-    alias: 'widget.components',
-});
-
