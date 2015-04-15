@@ -1,14 +1,4 @@
 
-Ext.define('Orion.view.SpComob', {
-    extend: 'Ext.form.field.ComboBox',
-    xtype: 'spcombo',
-    typeAhead: true,
-    triggerAction: 'all',
-    store: new Ext.data.Store({autoLoad: true, fields: [], proxy: {type: 'ajax', url: '/spgrp/',}}),
-    displayField: 'name',
-    valueField: 'id'
-});
-
 Ext.define('Orion.view.SpTvr', {
     extend: 'Orion.view.base.PlainGridPanel',
     xtype: 'sptvr',
@@ -35,18 +25,33 @@ Ext.define('Orion.view.SpTvr', {
             }
         },
         {
+            xtype: 'spcolumn',
             text: 'Группа',
             sortable: true,
             flex: 2,
+
             dataIndex: 'grp',
+            dataRenderIndex: 'grp__name',
+
             editor: {
-                xtype: 'spcombo',
-            },
-            renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-                console.log(value);
-//                var data = record.data['grp_name'];
-//                return  data !== null ? data : '';
-                return value['name']
+                spUrl: '/spgrp/',
+                spDisplayField: 'name',
+                spValueField: 'id',
+            }
+        },
+        {
+            xtype: 'spcolumn',
+            text: 'ПодГруппа',
+            sortable: true,
+            flex: 2,
+
+            dataIndex: 'subgrp',
+            dataRenderIndex: 'subgrp__name',
+
+            editor: {
+                spUrl: '/spgrp/',
+                spDisplayField: 'name',
+                spValueField: 'id',
             }
         },
     ],

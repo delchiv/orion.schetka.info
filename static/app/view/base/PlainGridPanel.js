@@ -6,16 +6,49 @@ Ext.define('Orion.view.RowEditor', {
     clicksToMoveEditor: 2,
     autoCancel: true,
     listeners: {
-        cancelEdit: function(rowEditing, context) {
+        cancelEdit: function(editor, context, eOpts) {
             if (context.record.phantom) {
                 context.store.remove(context.record);
             }
         },
-        edit: function (rowEditing, context, eOpts) {
+        edit: function (editor, context, eOpts) {
             context.store.sync();
             context.record.commit();
-        },
+        }
     }
+})
+
+Ext.define('Orion.view.SpColumn', {
+    extend: 'Ext.grid.column.Column',
+    xtype: 'spcolumn',
+
+    initComponent: function() {
+        var me = this;
+
+        var editor = Ext.Object.merge({
+            typeAhead: true,
+            triggerAction: 'all',
+            store: new Ext.data.Store({autoLoad: true, fields: [], proxy: {type: 'ajax', url: me.editor.spUrl,}}),
+            displayField: me.editor.spDisplayField,
+            valueField: me.editor.spValueField,
+            dataRenderIndex: me.dataRenderIndex,
+            listeners: {
+                select: function (combo, record, eOpts) {
+                    combo.column.container.component.grid.getSelection()[0].data[combo.dataRenderIndex] = record.data[combo.displayField];
+                },
+            }
+        }, me.editor)
+
+
+        me.editor = new Ext.form.field.ComboBox(editor);
+
+        me.callParent(arguments);
+    },
+
+    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        var data = record.data[this.columns[colIndex].dataRenderIndex];
+        return  data !== null ? data : '';
+    },
 })
 
 Ext.define('Orion.view.base.PlainGridPanel', {

@@ -38,7 +38,8 @@ class SpGrp(models.Model):
 class SpTvr(models.Model):
     num  = models.IntegerField()
     name = models.CharField(max_length=150)
-    grp  = models.ForeignKey(SpGrp, blank=True, null=True)
+    grp  = models.ForeignKey(SpGrp, related_name='+', blank=True, null=True)
+    subgrp = models.ForeignKey(SpGrp, related_name='+', blank=True, null=True)
 
     class Meta:
        verbose_name = "Товар"
