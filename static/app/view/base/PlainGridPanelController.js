@@ -8,7 +8,7 @@ Ext.define('Orion.view.base.PlainGridPanelController', {
         var rowEditing = grid.editingPlugin;
         rowEditing.cancelEdit();
 
-        grid.getStore().insert(0, {});
+        grid.getStore().insert(0, Ext.Object.merge({}, grid.emptyRecord));
 
         rowEditing.startEdit(0, 0);
     },
@@ -21,5 +21,6 @@ Ext.define('Orion.view.base.PlainGridPanelController', {
             grid.getStore().sync();
         }
         grid.lookupReference('deleteRecordButton').setDisabled(true);
+        grid.focus();
     }
 });

@@ -78,9 +78,9 @@ Ext.define('Orion.view.main.Panel', {
 
     items: [
         {
-            xtype: 'panel',
+            xtype: 'sebest',
             closable: false,
-            title: 'Финансы',
+            title: 'Себестоимость',
         },
     ]
 });

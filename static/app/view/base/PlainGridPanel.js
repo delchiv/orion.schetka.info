@@ -54,6 +54,9 @@ Ext.define('Orion.view.SpColumn', {
 Ext.define('Orion.view.base.PlainGridPanel', {
     extend: 'Ext.grid.Panel',
 
+    autoLoad: true,
+    emptyRecord: {},
+
     requires: [
         'Orion.view.base.PlainGridPanelController'
     ],
@@ -109,8 +112,13 @@ Ext.define('Orion.view.base.PlainGridPanel', {
             field_list.push(item);
         });
 
-        me.store = Ext.create('Orion.store.Base', { fields: field_list });
-        me.store.getProxy().setUrl('/'+me.xtype.replace('-grid', '')+'/');
+        me.store = Ext.create('Orion.store.Base', { fields: field_list, autoLoad: this.autoLoad });
+        var api = me.store.getProxy().api;
+        var url = '/'+me.xtype.replace('-grid', '')+'/';
+        api.create = url;
+        api.read   = url;
+        api.update = url;
+        api.destroy = url;
 
         me.callParent(arguments);
     }

@@ -2,9 +2,9 @@
 
 from rest_framework import serializers
 
-from base.serializers import SpTvrSerializer
+from base.serializers import SpTvrSerializer, DocSerializer, TvrSerializer
 
-from .models import Product, Component
+from .models import Product, Component, ReceptDoc, ReceptTvr
 
 
 class ProductSerializer(SpTvrSerializer):
@@ -17,3 +17,12 @@ class ComponentSerializer(SpTvrSerializer):
         exclude = ['typ']
         model = Component
 
+class ReceptDocSerializer(DocSerializer):
+    class Meta:
+        exclude = ['typ']
+        model = ReceptDoc
+
+class ReceptTvrSerializer(TvrSerializer):
+    class Meta:
+        exclude = ['typ']
+        model = ReceptTvr
