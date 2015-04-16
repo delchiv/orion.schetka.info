@@ -24,6 +24,7 @@ Ext.define('Orion.Application', {
         'recept.Recept',
 
         'sebest.Sebest',
+        'sebest.Cena',
     ],
 
     init: function () {
