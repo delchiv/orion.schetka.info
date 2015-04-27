@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'base',
     'recept',
     'sebest',
+    'rawm',
 )
 
 MIDDLEWARE_CLASSES = (

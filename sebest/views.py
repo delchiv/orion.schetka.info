@@ -5,19 +5,16 @@ from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
-from recept.models import ReceptTvr
-from recept.serializers import ReceptTvrSerializer
-
-from .models import CenaDoc
-from .serializers import CenaDocSerializer
+from .models import CenaDoc, ReceptTvrCalc
+from .serializers import CenaDocSerializer, ReceptTvrCalcSerializer
 
 # Create your views here.
 
 class SebestViewSet(viewsets.ViewSet):
 
     def list(self, request):
-        queryset = ReceptTvr.objects.all()
-        serializer = ReceptTvrSerializer(queryset, many=True)
+        queryset = ReceptTvrCalc.objects.all()
+        serializer = ReceptTvrCalcSerializer(queryset, many=True)
         return Response(serializer.data)
 
 class CenaDocViewSet(viewsets.ModelViewSet):
