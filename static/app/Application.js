@@ -25,6 +25,8 @@ Ext.define('Orion.Application', {
 
         'sebest.Sebest',
         'sebest.Cena',
+
+        'rawm.Prihod',
     ],
 
     init: function () {

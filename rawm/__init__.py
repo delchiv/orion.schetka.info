@@ -1,1 +1,1 @@
-default_app_config = 'rawm.apps.RawmConfig'
+#default_app_config = 'rawm.apps.RawmConfig'

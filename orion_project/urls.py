@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^', include('base.urls')),
     url(r'^', include('recept.urls')),
     url(r'^', include('sebest.urls')),
+    url(r'^', include('rawm.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 ]
